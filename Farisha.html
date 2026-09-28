@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Nikkah karogi mujhse?</title>
+
+<style>
+    body {
+        background: #ffe6f2;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    h1 {
+        margin-top: 80px;
+        font-size: 40px;
+        color: #d63384;
+        font-weight: bold;
+    }
+
+    #yesBtn, #noBtn {
+        padding: 15px 30px;
+        font-size: 22px;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        margin: 20px;
+    }
+
+    #yesBtn {
+        background-color: #ff4d88;
+        color: white;
+    }
+
+    #noBtn {
+        background-color: #999;
+        color: white;
+        position: absolute;
+        left: 50%;
+        top: 60%;
+        transform: translate(-50%, -50%);
+    }
+
+    .confetti {
+        position: fixed;
+        width: 10px;
+        height: 10px;
+        opacity: 0.9;
+        z-index: 999999;
+        animation: fall 3s linear forwards;
+    }
+
+    @keyframes fall {
+        0% { transform: translateY(-50px); }
+        100% { transform: translateY(100vh); }
+    }
+
+    #picContainer {
+        display: none;
+        margin-top: 40px;
+    }
+
+    #picContainer img {
+        width: 350px;
+        max-width: 90%;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    }
+</style>
+</head>
+<body>
+
+<h1>Nikkah karogi mujhse?</h1>
+
+<button id="yesBtn" onclick="yesClicked()">Yes ❤️</button>
+<button id="noBtn" onmouseover="moveButton()">No 😭</button>
+
+<div id="picContainer">
+    <img src="https://i.imgur.com/TIlz13O.jpeg" alt="Image">
+</div>
+
+<script>
+function yesClicked() {
+    launchConfetti();
+    document.getElementById("picContainer").style.display = "block";
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function moveButton() {
+    const btn = document.getElementById("noBtn");
+    const x = Math.random() * (window.innerWidth - 150);
+    const y = Math.random() * (window.innerHeight - 150);
+    btn.style.left = x + "px";
+    btn.style.top = y + "px";
+}
+
+function launchConfetti() {
+    for (let i = 0; i < 150; i++) {
+        let conf = document.createElement("div");
+        conf.className = "confetti";
+        conf.style.left = Math.random() * window.innerWidth + "px";
+        conf.style.backgroundColor = randomColor();
+        conf.style.animationDuration = (2 + Math.random() * 3) + "s";
+        document.body.appendChild(conf);
+
+        setTimeout(() => conf.remove(), 4000);
+    }
+}
+
+function randomColor() {
+    const colors = ["#ff4d88", "#ffcc00", "#00ccff", "#ff6666", "#66ff66", "#cc99ff"];
+    return colors[Math.floor(Math.random() * colors.length)];
+}
+</script>
+
+</body>
+</html>
